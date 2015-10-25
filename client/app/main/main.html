@@ -1,0 +1,80 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<div class="container">
+  <div class="row">
+    <button class="btn btn-success col-md-offset-1 col-xs-6 col-md-2" ng-click="addTestCase()">
+      Add Test Case
+    </button>
+    <button class="btn btn-primary col-xs-6 col-md-2" ng-click="testRegexes()">
+      Submit Test cases
+    </button>
+    <button class="btn btn-info col-xs-6 col-md-2" ng-click="saveRegexes()" ng-disabled="!description"
+            ng-hide="existsInDB || !isLoggedIn">
+      Save Test Group
+    </button>
+    <button class="btn btn-warning col-xs-6 col-md-2" ng-click="updateRegexes()" ng-show="existsInDB">
+      Update Test Group
+    </button>
+    <button class="btn btn-danger col-xs-6 col-md-2" ng-click="deleteTestGroup()" ng-show="existsInDB">
+      Delete This Test Group
+    </button>
+  </div>
+  <br/>
+
+  <div class="row form-group">
+    <div class="col-xs-12">
+      <label for="description">Description</label>
+      <input type="text" id="description" ng-required="true" class="form-control" ng-model="description"
+             placeholder="input description"/>
+    </div>
+  </div>
+  <div ng-repeat="testCase in Re.testCases track by $index">
+    <div class="well">
+      <div class="row">
+        <div class="col-xs-12 col-md-10">
+          <h4>Test Case {{testCase.idx}}</h4>
+        </div>
+        <div class="col-xs-12 col-md-2">
+          <button class="btn btn-success" ng-click="addTest($index)">+</button>
+          <button class="btn btn-danger glyphicon glyphicon-trash" ng-click="removeTestCase($index)"></button>
+        </div>
+      </div>
+      <br/>
+
+      <div class="row form-group">
+        <label class="col-xs-12 col-md-3" for="input-{{$index}}">Pattern</label>
+        <input class="form-control" type="text" id="input-{{$index}}" placeholder="{{Re.placeholders.re}}"
+               ng-model="testCase.re"/>
+      </div>
+      <div class="row form-group">
+        <label class="col-xs-12 col-md-3" for="new-location-{{$index}}">New Route</label>
+        <input class="col-xs-12 col-md-8 form-control" type="text" id="new-location-{{$index}}"
+               placeholder="{{Re.placeholders.loc}}" ng-model="testCase.newLocation"/>
+      </div>
+      <hr/>
+      <div class="form-group" ng-repeat="test in testCase.tests track by $index">
+        <div class="row">
+          <label for="testCase-{{$parent.$index}}-{{$index}}" class="col-xs-12 col-md-12">Test {{$index}}</label>
+
+          <div class="col-xs-12 col-md-8">
+            <input class="form-control" placeholder="{{Re.placeholders.test}}" ng-model="test.string"
+                   id="testCase-{{$parent.$index}}-{{$index}}"/>
+          </div>
+          <i class="col-xs-4 col-md-1 glyphicon glyphicon-ok-circle" ng-class="{'green': test.pass}"></i>
+          <i class="col-xs-4 col-md-1 glyphicon glyphicon-ban-circle" ng-class="{'red': !test.pass}"></i>
+          <i class="glyphicon glyphicon-minus col-xs-4 col-md-1" ng-click="removeTest($parent.$index, $index)"></i>
+        </div>
+        <br/>
+
+        <div class="row" ng-show="test.pass && test.output">
+          <label for="output-{{$parent.$index}}-{{$index}}" class="col-xs-12 col-md-12">Redirect</label>
+
+          <div class="col-xs-12 col-md-8">
+            <input disabled type="text" ng-model="test.output" class="form-control disabled"
+                   id="output-{{$parent.$index}}-{{$index}}"/>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
