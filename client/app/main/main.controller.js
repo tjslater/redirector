@@ -7,7 +7,7 @@ angular.module('redirectorApp')
 
     $scope.description = "";
     $scope.existsInDB = false;
-    $scope.isLoggedIn = Auth.isLoggedIn();
+    $scope.isLoggedIn = Auth.isLoggedIn;
     $scope.Re = Re;
 
 

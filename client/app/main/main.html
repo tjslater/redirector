@@ -9,7 +9,7 @@
       Submit Test cases
     </button>
     <button class="btn btn-info col-xs-6 col-md-2" ng-click="saveRegexes()" ng-disabled="!description"
-            ng-hide="existsInDB || !isLoggedIn">
+            ng-hide="existsInDB || !isLoggedIn()">
       Save Test Group
     </button>
     <button class="btn btn-warning col-xs-6 col-md-2" ng-click="updateRegexes()" ng-show="existsInDB">
@@ -60,9 +60,9 @@
             <input class="form-control" placeholder="{{Re.placeholders.test}}" ng-model="test.string"
                    id="testCase-{{$parent.$index}}-{{$index}}"/>
           </div>
-          <i class="col-xs-4 col-md-1 glyphicon glyphicon-ok-circle" ng-class="{'green': test.pass}"></i>
-          <i class="col-xs-4 col-md-1 glyphicon glyphicon-ban-circle" ng-class="{'red': !test.pass}"></i>
-          <i class="glyphicon glyphicon-minus col-xs-4 col-md-1" ng-click="removeTest($parent.$index, $index)"></i>
+          <button class="col-xs-4 col-md-1 glyphicon glyphicon-ok-circle" ng-class="{'green': test.pass}"></button>
+          <button class="col-xs-4 col-md-1 glyphicon glyphicon-ban-circle" ng-class="{'red': !test.pass}"></button>
+          <button class="btn btn-danger" ng-click="removeTest($parent.$index, $index)">X</button>
         </div>
         <br/>
 
