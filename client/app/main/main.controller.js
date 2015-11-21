@@ -9,12 +9,15 @@ angular.module('redirectorApp')
     $scope.existsInDB = false;
     $scope.isLoggedIn = Auth.isLoggedIn;
     $scope.Re = Re;
+    console.log(Auth.getCurrentUser());
+    console.log(TestCases);
 
 
     if (TestCases.data){
       $scope.Re.testCases = TestCases.data;
       $scope.existsInDB = true;
       $scope.description = TestCases.description;
+      $scope.isOwner = TestCases.userId === userId;
     }
 
     $scope.addTestCase = function () {

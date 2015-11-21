@@ -12,10 +12,10 @@
             ng-hide="existsInDB || !isLoggedIn()">
       Save Test Group
     </button>
-    <button class="btn btn-warning col-xs-6 col-md-2" ng-click="updateRegexes()" ng-show="existsInDB">
+    <button class="btn btn-warning col-xs-6 col-md-2" ng-click="updateRegexes()" ng-show="existsInDB && isOwner">
       Update Test Group
     </button>
-    <button class="btn btn-danger col-xs-6 col-md-2" ng-click="deleteTestGroup()" ng-show="existsInDB">
+    <button class="btn btn-danger col-xs-6 col-md-2" ng-click="deleteTestGroup()" ng-show="existsInDB && isOwner">
       Delete This Test Group
     </button>
   </div>
