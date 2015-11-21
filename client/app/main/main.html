@@ -60,9 +60,12 @@
             <input class="form-control" placeholder="{{Re.placeholders.test}}" ng-model="test.string"
                    id="testCase-{{$parent.$index}}-{{$index}}"/>
           </div>
-          <button class="col-xs-4 col-md-1 glyphicon glyphicon-ok-circle" ng-class="{'green': test.pass}"></button>
-          <button class="col-xs-4 col-md-1 glyphicon glyphicon-ban-circle" ng-class="{'red': !test.pass}"></button>
-          <button class="btn btn-danger" ng-click="removeTest($parent.$index, $index)">X</button>
+          <button class="col-xs-4 col-md-1 btn" ng-class="{'green btn-success': test.pass}"><i
+                  class="glyphicon glyphicon-ok-circle"></i></button>
+          <button class="col-xs-4 col-md-1 btn" ng-class="{'white btn-danger': !test.pass}">
+            <i class="glyphicon glyphicon-ban-circle"></i>
+          </button>
+          <button class="btn btn-default" ng-click="removeTest($parent.$index, $index)">X</button>
         </div>
         <br/>
 

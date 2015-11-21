@@ -5,7 +5,7 @@ angular.module('redirectorApp')
 
     var userId = Auth.isLoggedIn() ? Auth.getCurrentUser()._id : false;
 
-    $scope.description = "";
+    $scope.description = '';
     $scope.existsInDB = false;
     $scope.isLoggedIn = Auth.isLoggedIn;
     $scope.Re = Re;
@@ -51,15 +51,15 @@ angular.module('redirectorApp')
     $scope.updateRegexes = function(){
       Re.api.updateRegexes($state.params.id, Re.testCases, $scope.description).then(function(response){
         Re.testCases = response.data;
-      })
-    }
+      });
+    };
 
     $scope.deleteTestGroup = function() {
       Re.testCases = [new Re.TestCase()];
       Re.api.deleteTestGroup($state.params.id).then(function() {
-        $state.go('main', {id: ""});
+        $state.go('main', {id: ''});
       });
-    }
+    };
 
 
   });

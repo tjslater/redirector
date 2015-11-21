@@ -12,8 +12,8 @@ angular.module('redirectorApp')
             if (!$stateParams.id){ return []; }
             return Re.api.getRegexes($stateParams.id).then(function(response){
               return response;
-            }, function(err){
-              $state.go('main', {id: ""});
+            }, function(){
+              $state.go('main', {id: ''});
             });
           }
         }

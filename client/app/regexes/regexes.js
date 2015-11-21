@@ -11,7 +11,7 @@ angular.module('redirectorApp')
           TestGroups: function($http, $stateParams) {
             return $http.get('api/re2/getByUserId/' + $stateParams.id).then(function(response) {
               return response.data;
-            })
+            });
           }
         }
       });
